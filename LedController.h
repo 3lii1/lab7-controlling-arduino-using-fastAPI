@@ -13,7 +13,6 @@ private:
     bool greenState;
     bool blueState;
 
-    // Helper function to print the LED state
     void printState(const char* color, bool state) {
         Serial.print(color);
         Serial.print(" is now ");
@@ -21,7 +20,6 @@ private:
     }
 
 public:
-    // Constructor: assign pins and initialize states
     LedController(int r, int g, int b) {
         redPin = r;
         greenPin = g;
@@ -38,7 +36,6 @@ public:
         allOff();
     }
 
-    // Toggle individual LEDs
     void toggleRed() {
         redState = !redState;
         digitalWrite(redPin, redState);
@@ -60,7 +57,6 @@ public:
         printState("BLUE", blueState);
     }
 
-    // Turn all LEDs on
     void allOn() {
         digitalWrite(redPin, HIGH);
         digitalWrite(greenPin, HIGH);
@@ -69,22 +65,21 @@ public:
         Serial.println("ALL LEDs ON");
     }
 
-void allOff() {
-    digitalWrite(redPin, LOW);
-    digitalWrite(greenPin, LOW);
-    digitalWrite(bluePin, LOW);
-    redState = greenState = blueState = false;
+    void allOff() {
+        digitalWrite(redPin, LOW);
+        digitalWrite(greenPin, LOW);
+        digitalWrite(bluePin, LOW);
+        redState = greenState = blueState = false;
 
-    Serial.println(F(" LED Controller Ready "));
-    Serial.println(F("Use the following commands via Serial:"));
-    Serial.println(F("  1 Toggle RED LED"));
-    Serial.println(F("  2 Toggle GREEN LED"));
-    Serial.println(F("  3 Toggle BLUE LED"));
-    Serial.println(F("  ON Turn ALL LEDs ON"));
-    Serial.println(F("  OFF Turn ALL LEDs OFF"));
-    Serial.println(F("============================"));
-}
-
+        Serial.println(F(" LED Controller Ready "));
+        Serial.println(F("Use the following commands via Serial:"));
+        Serial.println(F("  1 Toggle RED LED"));
+        Serial.println(F("  2 Toggle GREEN LED"));
+        Serial.println(F("  3 Toggle BLUE LED"));
+        Serial.println(F("  ON Turn ALL LEDs ON"));
+        Serial.println(F("  OFF Turn ALL LEDs OFF"));
+        Serial.println(F("============================"));
+    }
 };
 
 #endif
